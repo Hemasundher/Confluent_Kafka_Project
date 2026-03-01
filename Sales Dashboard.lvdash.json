@@ -1,0 +1,623 @@
+{
+  "datasets": [
+    {
+      "name": "e61943c1",
+      "displayName": "daily_summary",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.daily_summary"
+      ]
+    },
+    {
+      "name": "cfb0344d",
+      "displayName": "dim_items",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.dim_items"
+      ],
+      "catalog": "sales_catalog",
+      "schema": "reporting"
+    },
+    {
+      "name": "d8fb6ba7",
+      "displayName": "dim_users",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.dim_users"
+      ]
+    },
+    {
+      "name": "102bad9c",
+      "displayName": "fact_orders",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.fact_orders"
+      ]
+    },
+    {
+      "name": "dd027ddb",
+      "displayName": "failure_summary",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.failure_summary"
+      ]
+    },
+    {
+      "name": "ee87c3af",
+      "displayName": "hourly_summary",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.hourly_summary"
+      ]
+    },
+    {
+      "name": "ffdc328f",
+      "displayName": "item_summary",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.item_summary"
+      ]
+    },
+    {
+      "name": "0fabab40",
+      "displayName": "user_summary",
+      "queryLines": [
+        "SELECT * FROM sales_catalog.reporting.user_summary"
+      ]
+    }
+  ],
+  "pages": [
+    {
+      "name": "efb7580e",
+      "displayName": "Hourly Summary",
+      "layout": [
+        {
+          "widget": {
+            "name": "revenue-by-hour",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ee87c3af",
+                  "fields": [
+                    {
+                      "name": "hour",
+                      "expression": "`hour`"
+                    },
+                    {
+                      "name": "sum(total_revenue)",
+                      "expression": "SUM(`total_revenue`)"
+                    }
+                  ],
+                  "disaggregated": false
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "showTitle": true,
+                "title": " Revenue by Hour"
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "hour",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "sum(total_revenue)",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "hour",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "b400981a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ee87c3af",
+                  "fields": [
+                    {
+                      "name": "hour",
+                      "expression": "`hour`"
+                    },
+                    {
+                      "name": "total_orders",
+                      "expression": "`total_orders`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Orders by Hour",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "hour",
+                  "displayName": "hour",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "y": {
+                  "fieldName": "total_orders",
+                  "displayName": "total_orders",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "hour",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "hour",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "cc261cd3",
+      "displayName": "Item Summary",
+      "layout": [
+        {
+          "widget": {
+            "name": "4ad98e8e",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ffdc328f",
+                  "fields": [
+                    {
+                      "name": "item_name",
+                      "expression": "`item_name`"
+                    },
+                    {
+                      "name": "total_revenue",
+                      "expression": "`total_revenue`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Revenue by Item",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "item_name",
+                  "displayName": "item_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "total_revenue",
+                  "displayName": "total_revenue",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "item_name",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "item_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "b42fc5a9",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "ffdc328f",
+                  "fields": [
+                    {
+                      "name": "item_name",
+                      "expression": "`item_name`"
+                    },
+                    {
+                      "name": "current_stock",
+                      "expression": "`current_stock`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Current Stock",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "item_name",
+                  "displayName": "item_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "current_stock",
+                  "displayName": "current_stock",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "item_name",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "item_name",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "b8e5d350",
+      "displayName": "User  & Orders",
+      "layout": [
+        {
+          "widget": {
+            "name": "3b1799cf",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "0fabab40",
+                  "fields": [
+                    {
+                      "name": "username",
+                      "expression": "`username`"
+                    },
+                    {
+                      "name": "total_spent",
+                      "expression": "`total_spent`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Top Spenders",
+                "showTitle": true
+              },
+              "widgetType": "bar",
+              "encodings": {
+                "x": {
+                  "fieldName": "username",
+                  "displayName": "username",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "y": {
+                  "fieldName": "total_spent",
+                  "displayName": "total_spent",
+                  "scale": {
+                    "type": "quantitative"
+                  }
+                },
+                "color": {
+                  "fieldName": "username",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "username",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "3109b08a",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "102bad9c",
+                  "fields": [
+                    {
+                      "name": "total_cost",
+                      "expression": "`total_cost`"
+                    },
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Normal vs Premium Revenue",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "total_cost",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "total_cost"
+                },
+                "color": {
+                  "fieldName": "category",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "category",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    },
+    {
+      "name": "8f7db377",
+      "displayName": "User  & Failed Orders",
+      "layout": [
+        {
+          "widget": {
+            "name": "489fb236",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "dd027ddb",
+                  "fields": [
+                    {
+                      "name": "total_failures",
+                      "expression": "`total_failures`"
+                    },
+                    {
+                      "name": "status",
+                      "expression": "`status`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 3,
+              "frame": {
+                "title": "Failure Reasons",
+                "showTitle": true
+              },
+              "widgetType": "pie",
+              "encodings": {
+                "angle": {
+                  "fieldName": "total_failures",
+                  "scale": {
+                    "type": "quantitative"
+                  },
+                  "displayName": "total_failures"
+                },
+                "color": {
+                  "fieldName": "status",
+                  "legend": {
+                    "position": "right"
+                  },
+                  "displayName": "status",
+                  "scale": {
+                    "type": "categorical"
+                  }
+                },
+                "label": {
+                  "show": true
+                }
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 0,
+            "width": 12,
+            "height": 6
+          }
+        },
+        {
+          "widget": {
+            "name": "17c7c6e0",
+            "queries": [
+              {
+                "name": "main_query",
+                "query": {
+                  "datasetName": "0fabab40",
+                  "fields": [
+                    {
+                      "name": "username",
+                      "expression": "`username`"
+                    },
+                    {
+                      "name": "category",
+                      "expression": "`category`"
+                    },
+                    {
+                      "name": "total_orders",
+                      "expression": "`total_orders`"
+                    },
+                    {
+                      "name": "total_spent",
+                      "expression": "`total_spent`"
+                    },
+                    {
+                      "name": "current_balance",
+                      "expression": "`current_balance`"
+                    }
+                  ],
+                  "disaggregated": true
+                }
+              }
+            ],
+            "spec": {
+              "version": 2,
+              "frame": {
+                "title": "User Summary",
+                "showTitle": true
+              },
+              "rowsPerPage": 25,
+              "widgetType": "table",
+              "encodings": {
+                "columns": [
+                  {
+                    "fieldName": "username",
+                    "displayName": "username"
+                  },
+                  {
+                    "fieldName": "category",
+                    "displayName": "category"
+                  },
+                  {
+                    "fieldName": "total_orders",
+                    "displayName": "total_orders"
+                  },
+                  {
+                    "fieldName": "total_spent",
+                    "displayName": "total_spent"
+                  },
+                  {
+                    "fieldName": "current_balance",
+                    "displayName": "current_balance"
+                  }
+                ]
+              }
+            }
+          },
+          "position": {
+            "x": 0,
+            "y": 6,
+            "width": 12,
+            "height": 6
+          }
+        }
+      ],
+      "pageType": "PAGE_TYPE_CANVAS",
+      "layoutVersion": "GRID_V1"
+    }
+  ],
+  "uiSettings": {
+    "theme": {
+      "widgetHeaderAlignment": "ALIGNMENT_UNSPECIFIED"
+    },
+    "applyModeEnabled": false
+  }
+}
