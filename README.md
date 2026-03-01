@@ -343,6 +343,7 @@ Job: order_pipeline (scheduled hourly)
             refreshes all reporting schema tables
             depends on: Task 3
 ```
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/3d7e2c07-afa7-4258-be87-e04bb3a77e5d" />
 
 ---
 
