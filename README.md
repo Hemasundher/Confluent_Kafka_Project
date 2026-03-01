@@ -19,28 +19,28 @@ An end-to-end real-time order processing pipeline that simulates an e-commerce p
 │  (generates random orders)                                      │
 │         │                                                       │
 │         ▼                                                       │
-│  ┌─────────────────────────────────────────┐                   │
-│  │         CONFLUENT KAFKA (Azure)         │                   │
-│  │                                         │                   │
-│  │  orders topic (3 partitions)            │                   │
-│  │  ├── partition 0 → normal users         │                   │
-│  │  ├── partition 1 → normal users         │                   │
-│  │  └── partition 2 → premium users        │                   │
-│  │                                         │                   │
-│  │  dead_letter topic (failed orders)      │                   │
-│  │  notifications topic                    │                   │
-│  └─────────────────────────────────────────┘                   │
+│  ┌─────────────────────────────────────────┐                    │
+│  │         CONFLUENT KAFKA (Azure)         │                    │
+│  │                                         │                    │
+│  │  orders topic (3 partitions)            │                    │
+│  │  ├── partition 0 → normal users         │                    │
+│  │  ├── partition 1 → normal users         │                    │
+│  │  └── partition 2 → premium users        │                    │
+│  │                                         │                    │
+│  │  dead_letter topic (failed orders)      │                    │
+│  │  notifications topic                    │                    │
+│  └─────────────────────────────────────────┘                    │
 │         │                                                       │
 │         ▼                                                       │
 │  stream_order_processor                                         │
-│  (readStream → validate → foreachBatch → Delta Lake)           │
+│  (readStream → validate → foreachBatch → Delta Lake)            │
 │         │                                                       │
 │         ▼                                                       │
-│  ┌─────────────────────────────────────────┐                   │
-│  │         DELTA LAKE (sales_catalog)      │                   │
-│  │  main schema    → operational tables    │                   │
-│  │  reporting schema → analytics tables    │                   │
-│  └─────────────────────────────────────────┘                   │
+│  ┌─────────────────────────────────────────┐                    │
+│  │         DELTA LAKE (sales_catalog)      │                    │
+│  │  main schema    → operational tables    │                    │
+│  │  reporting schema → analytics tables    │                    │
+│  └─────────────────────────────────────────┘                    │
 │         │                                                       │
 │         ▼                                                       │
 │  Lakeview Dashboard                                             │
